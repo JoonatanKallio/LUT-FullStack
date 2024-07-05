@@ -16,7 +16,7 @@ router.get("/:user", (req, res, next) => {
 });
 
 router.post("/:todo", passport.authenticate("jwt", {session: false}), (req, res, next) => {
-    Todos.findOneAndUpdate({_id: req.params.todo}, {done: true}, ((error, todo) => {
+    Todos.findOneAndUpdate({_id: req.params.todo}, {done: req.body.done}, ((error, todo) => {
         if (error) {
             res.json({success: false, msg:"Failed to update todo."})
         }

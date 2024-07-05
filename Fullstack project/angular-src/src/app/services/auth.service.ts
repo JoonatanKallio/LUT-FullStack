@@ -70,7 +70,7 @@ export class AuthService {
     return this.http.get("http://localhost:3000/todos/"+userId, httpOptions).pipe(map((res: any) => res));
   }
 
-  updateTodo(_id) {
+  updateTodo(todo, id) {
     this.loadToken()
     let headers = new HttpHeaders();
     const httpOptions = {
@@ -79,8 +79,8 @@ export class AuthService {
         "Authorization": this.authToken
       })
     }
-    const postUrl = "http://localhost:3000/todos/" + _id
-    return this.http.post(postUrl, {done: true}, httpOptions).pipe(map((res: any) => res));
+    const postUrl = "http://localhost:3000/todos/" + id
+    return this.http.post(postUrl, {done: todo}, httpOptions).pipe(map((res: any) => res));
   }
 
   postTodo(todo) {

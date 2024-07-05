@@ -58,8 +58,10 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  onDone(todo) {
-    this.authService.updateTodo(todo._id).subscribe(data => {
+  onTodoUpdate(todo) {
+    const newDoneValue = !todo.done
+
+    this.authService.updateTodo(newDoneValue, todo._id).subscribe(data => {
       if(data['success']) {
         this.flashMessagesService.show("Todo updated", {cssClass: "alert-success", timeout: 3000})
         this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {

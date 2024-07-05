@@ -9,20 +9,30 @@
       <button type="submit" class="btn btn-primary">Create todo</button>
     </form>
   </div>
-  <h2>Todos:</h2>
-  <div *ngFor="let todo of todoList" class="m-2">
+  <h2 *ngIf="todoList?.length === 0">No todos yet, add some!</h2>
+  <h2 *ngIf="todoList?.length != 0">Todos:</h2>
+  <div *ngFor="let todo of todoList" class="card__wrapper">
     <div class="todo__card bg-info-subtle">
       <h3>
         {{todo.todo}}
       </h3>
       <h5>
-        <p>Done? <span class="text-decoration-underline">{{todo.done ? "Done" : "Not done"}}</span></p>
-        <form *ngIf="!todo.done" (submit)="onDone(todo)">
-          <button id="done" type="submit">Set as done</button>
-        </form>
-        <form *ngIf="todo" (submit)="removeTodo(todo)">
-          <button id="remove" type="submit">Remove</button>
-        </form>
+        <span class="text-decoration-underline {{todo.done ? 'text-success' : 'text-danger'}}">{{todo.done ? "Done" : "Not done"}}</span>
+        <div class="todo__buttons">
+          <div>
+            <form *ngIf="!todo.done" (submit)="onTodoUpdate(todo)">
+              <button class="btn btn-primary" id="done" type="submit">Set as done</button>
+            </form>
+            <form *ngIf="todo.done" (submit)="onTodoUpdate(todo)">
+              <button class="btn btn-primary" id="undoDone" type="submit">Undo Done</button>
+            </form>
+          </div>
+          <div>
+            <form *ngIf="todo" (submit)="removeTodo(todo)">
+              <button class="btn btn-danger" id="remove" type="submit">Remove</button>
+            </form>
+          </div>
+        </div>
       </h5>
     </div>
   </div>

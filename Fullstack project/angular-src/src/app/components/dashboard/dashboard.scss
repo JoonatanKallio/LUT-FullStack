@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
   .dashboard__wrapper {
     width: 50%;
     form {
@@ -19,5 +20,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20rem;
+  text-align: center;
+  width: 50%;
+}
+.card__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.todo__buttons {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  width: 100%;
+  button {
+    width: 15rem;
+  }
 }

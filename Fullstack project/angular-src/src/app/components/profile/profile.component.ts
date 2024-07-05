@@ -9,6 +9,10 @@ import { Router } from "@angular/router";
 })
 export class ProfileComponent implements OnInit {
   user: Object;
+  todoList: Array<any>;
+  doneTodos: number;
+  notDoneTodos: number;
+
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -16,6 +20,15 @@ export class ProfileComponent implements OnInit {
     this.authService.getProfile().subscribe(profile =>  {
       this.user = profile.user;
     },
+      error => {
+        console.log(error);
+        return false;
+      });
+    this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+        this.todoList = todos
+        this.doneTodos = this.todoList.filter((todo) => todo.done === true).length;
+        this.notDoneTodos = this.todoList.filter((todo) => todo.done === false).length;
+      },
       error => {
         console.log(error);
         return false;

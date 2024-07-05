@@ -1,2 +1,29 @@
-<h2 class="page-header">Dashboard</h2>
-<p>Welcome to your dashboard</p>
+<div *ngIf="user" class="dashboard">
+  <h2>Welcome to your dashboard {{user.name}}!</h2>
+  <div class="dashboard__wrapper">
+    <form (submit)="onTodoCreate()">
+      <div class="form-group">
+        <label for="todo">Create a new TODO</label>
+        <input type="text" class="form-control" id="todo" placeholder="Enter a todo" [(ngModel)]="todo" name="todo">
+      </div>
+      <button type="submit" class="btn btn-primary">Create todo</button>
+    </form>
+  </div>
+  <h2>Todos:</h2>
+  <div *ngFor="let todo of todoList" class="m-2">
+    <div class="todo__card bg-info-subtle">
+      <h3>
+        {{todo.todo}}
+      </h3>
+      <h5>
+        <p>Done? <span class="text-decoration-underline">{{todo.done ? "Done" : "Not done"}}</span></p>
+        <form *ngIf="!todo.done" (submit)="onDone(todo)">
+          <button id="done" type="submit">Set as done</button>
+        </form>
+        <form *ngIf="todo" (submit)="removeTodo(todo)">
+          <button id="remove" type="submit">Remove</button>
+        </form>
+      </h5>
+    </div>
+  </div>
+</div>

@@ -320,7 +320,6 @@ class LoginComponent {
         this.authService.authenticateUser(user).subscribe(data => {
             if (data['success']) {
                 this.flashMessagesService.show("You are now logged in", { cssClass: "alert-success", timeout: 3000 });
-                console.log(data);
                 this.authService.storeUserData(data.token, data.user);
                 this.router.navigate(['/']);
             }
@@ -760,14 +759,12 @@ class AuthService {
     getProfile() {
         this.loadToken();
         let headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]();
-        console.log(this.authToken);
         const httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpHeaders"]({
                 "Content-Type": "application/json",
                 "Authorization": this.authToken
             })
         };
-        console.log(httpOptions);
         return this.http.get("http://localhost:3000/users/profile", httpOptions).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])((res) => res));
     }
     loadToken() {

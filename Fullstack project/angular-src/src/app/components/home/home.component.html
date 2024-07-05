@@ -1,22 +1,33 @@
-<div class="m-lg-5 text-center bg-info-subtle p-lg-5">
-  <h1>MEAN Authentication App</h1>
-  <p class="lead">Welcome to our custom MEAN Authentication application built from scratch!</p>
+<div class="flex-column align-content-center m-lg-5 text-center bg-info-subtle p-lg-5 rounded-3">
   <div>
-    <a class="btn btn-primary" [routerLink]="['/register']">Register</a> <a class="btn btn-default" [routerLink]="['/login']">Login</a>
+    <h1>TODOIT</h1>
+    <h3>Welcome to a new and easy-to-use todo application!</h3>
+  </div>
+  <div class="d-flex flex-column justify-content-center align-items-center gap-1" *ngIf="authService.notLoggedIn()">
+    <h5>Dont have an account? <span class="btn btn-primary" [routerLink]="['/register']">Register here!</span></h5>
+    <h5>Already have an account? <span class="btn btn-dark" [routerLink]="['/login']">Login</span></h5>
+  </div>
+  <div class="d-flex flex-column justify-content-center align-items-center gap-1" *ngIf="authService.loggedIn()">
+    <h5>Start using the awesome TODOIT!</h5>
+    <h5>Start by going to your dashboard.</h5>
+    <span class="btn btn-primary" [routerLink]="['/dashboard']">To The Dashboard</span>
   </div>
 </div>
 
-<div class="row p-lg-5">
-  <div class="col-md-4">
-    <h3>Express Backend</h3>
-    <p>A rock solid Node.js/Express server using Mongoose to organize models and query the database</p>
-  </div>
-  <div class="col-md-4">
-    <h3>Angular-CLI</h3>
-    <p>Angular-CLI to generate components, services and more. Local dev server and easy compilation</p>
-  </div>
-  <div class="col-md-4">
-    <h3>JWT Tokens</h3>
-    <p>Full featured authentication using JSON web tokens. Login and store user data</p>
+<div class="d-flex flex-column justify-content-center align-items-center gap-1">
+  <h1>Why use todo?</h1>
+  <div class="d-flex gap-5 align-items-center justify-content-center h5 card-wrapper">
+    <div class="bg-info-subtle rounded-3 p-3 infocard">
+      <h3>Fast todo tracking</h3>
+      <p>With the application you can track your to-do's fast without taking much time.</p>
+    </div>
+    <div class="bg-info-subtle rounded-3 p-3 infocard">
+      <h3>Easy to use</h3>
+      <p>Todo app is easy to learn and use.</p>
+    </div>
+    <div class="bg-info-subtle rounded-3  p-3 infocard">
+      <h3>Improves productivity</h3>
+      <p>By using Todo app, you can improve your productivity by 200%</p>
+    </div>
   </div>
 </div>

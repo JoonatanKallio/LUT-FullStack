@@ -1,0 +1,12 @@
+.card-wrapper{
+  height: auto;
+  margin-top: 2rem;
+  .infocard {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 100%;
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -11,6 +11,7 @@ Requirements to run the project:
   
 Project can be started with in the project root folder "Fullstack project": 
 ```
+    npm install
     npm start
 ```
 Project runs on port 3000.

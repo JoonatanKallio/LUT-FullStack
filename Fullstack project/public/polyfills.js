@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\jones\WebstormProjects\FullStack_Course\Fullstack video tutorial\angular-src\src\polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\Users\jones\WebstormProjects\FullStack_Course\Fullstack project\angular-src\src\polyfills.ts */"hN/g");
 
 
 /***/ }),

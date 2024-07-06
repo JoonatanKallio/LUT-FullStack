@@ -27,7 +27,7 @@ mongoose.set('useFindAndModify', false);
 app.use(cors());
 
 // Static folder
-//app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 
 // BodyParser middleware
@@ -47,9 +47,9 @@ app.get('/', (req, res) => {
     res.send('')
 })
 
-//app.get("*", (req, res) => {
-//    res.sendFile(path.join(__dirname, "public/index.html"));
-//} )
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"));
+} )
 
 app.listen(port, () => {
     console.log(`Listening port ${port}`)

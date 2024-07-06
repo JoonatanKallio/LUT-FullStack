@@ -65,48 +65,4 @@ export class AuthService {
     this.user = null;
     localStorage.clear();
   }
-
-  getTodos(userId) {
-    return this.http.get("http://localhost:3000/todos/"+userId, httpOptions).pipe(map((res: any) => res));
-  }
-
-  updateTodo(todo, id) {
-    this.loadToken()
-    let headers = new HttpHeaders();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        "Authorization": this.authToken
-      })
-    }
-    const postUrl = "http://localhost:3000/todos/" + id
-    return this.http.post(postUrl, {done: todo}, httpOptions).pipe(map((res: any) => res));
-  }
-
-  postTodo(todo) {
-    this.loadToken()
-    let headers = new HttpHeaders();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        "Authorization": this.authToken
-      })
-    }
-    const postUrl = "http://localhost:3000/todos/create/" + JSON.parse(localStorage.getItem("user")).id
-    return this.http.post(postUrl, todo, httpOptions).pipe(map((res: any) => res));
-  }
-
-
-  removeTodo(_id) {
-    this.loadToken()
-    let headers = new HttpHeaders();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        "Authorization": this.authToken
-      })
-    }
-    const postUrl = "http://localhost:3000/todos/" + _id
-    return this.http.delete(postUrl, httpOptions).pipe(map((res: any) => res));
-  }
 }

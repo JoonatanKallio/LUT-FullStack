@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
+import {TodoapiService} from "../../services/todoapi.service";
 import {Router} from "@angular/router";
 import {FlashMessagesService} from "angular2-flash-messages";
 
@@ -13,7 +14,7 @@ export class DashboardComponent implements OnInit {
   todo: String;
   user: Object;
 
-  constructor(private authService: AuthService, private router: Router, private flashMessagesService: FlashMessagesService) { }
+  constructor(private authService: AuthService, private todoService: TodoapiService, private router: Router, private flashMessagesService: FlashMessagesService) { }
 
 
 
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
         return false;
       });
 
-    this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+    this.todoService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
         this.todoList = todos
       },
       error => {
@@ -42,10 +43,10 @@ export class DashboardComponent implements OnInit {
       todo: this.todo,
       done: false
     }
-    this.authService.postTodo(todo).subscribe(data => {
+    this.todoService.postTodo(todo).subscribe(data => {
       if(data['success']) {
         this.flashMessagesService.show("Todo posted", {cssClass: "alert-success", timeout: 3000})
-        this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+        this.todoService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
             this.todoList = todos
           },
           error => {
@@ -61,10 +62,10 @@ export class DashboardComponent implements OnInit {
   onTodoUpdate(todo) {
     const newDoneValue = !todo.done
 
-    this.authService.updateTodo(newDoneValue, todo._id).subscribe(data => {
+    this.todoService.updateTodo(newDoneValue, todo._id).subscribe(data => {
       if(data['success']) {
         this.flashMessagesService.show("Todo updated", {cssClass: "alert-success", timeout: 3000})
-        this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+        this.todoService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
             this.todoList = todos
           },
           error => {
@@ -78,10 +79,10 @@ export class DashboardComponent implements OnInit {
   }
 
   removeTodo(todo) {
-    this.authService.removeTodo(todo._id).subscribe(data => {
+    this.todoService.removeTodo(todo._id).subscribe(data => {
       if(data['success']) {
         this.flashMessagesService.show("Todo removed", {cssClass: "alert-success", timeout: 3000})
-        this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+        this.todoService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
             this.todoList = todos
           },
           error => {

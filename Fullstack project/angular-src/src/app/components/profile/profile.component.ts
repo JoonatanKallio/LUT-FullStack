@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
+import {TodoapiService} from "../../services/todoapi.service";
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ export class ProfileComponent implements OnInit {
   notDoneTodos: number;
 
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private todoService: TodoapiService, private router: Router) { }
 
   ngOnInit(): void {
     this.authService.getProfile().subscribe(profile =>  {
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
         console.log(error);
         return false;
       });
-    this.authService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
+    this.todoService.getTodos(JSON.parse(localStorage.getItem("user")).id).subscribe(todos =>  {
         this.todoList = todos
         this.doneTodos = this.todoList.filter((todo) => todo.done === true).length;
         this.notDoneTodos = this.todoList.filter((todo) => todo.done === false).length;

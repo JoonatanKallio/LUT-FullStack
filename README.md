@@ -13,3 +13,4 @@ Project can be started with in the project root folder "Fullstack project":
 ```
     npm start
 ```
+Project runs on port 3000. http://localhost:3000/
